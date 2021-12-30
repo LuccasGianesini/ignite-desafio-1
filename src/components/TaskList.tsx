@@ -14,36 +14,36 @@ export function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [newTaskTitle, setNewTaskTitle] = useState('');
 
-    function getNewId(modifiable: Task[]): number {
-        if (modifiable.length === 0) {
+    function getNewId(modifiableArray: Task[]): number {
+        if (modifiableArray.length === 0) {
             return 0;
         }
-        const last = modifiable[modifiable.length -1];
-        return last.id + 1;
+        return modifiableArray[modifiableArray.length -1].id + 1;
     }
 
     function handleCreateNewTask() {
         if (newTaskTitle === undefined || newTaskTitle === '') {
             console.error("A new task must contain a ");
+            return;
         }
-        const modifiable = [...tasks];
-        modifiable.push({
-            id: getNewId(modifiable),
+        const modifiableArray = [...tasks];
+        modifiableArray.push({
+            id: getNewId(modifiableArray),
             title: newTaskTitle,
             isComplete: false
         });
-        setTasks([...modifiable]);
+        setTasks([...modifiableArray]);
     }
 
     function handleToggleTaskCompletion(id: number) {
-        const modifiable = [...tasks];
-        const taskToChange = modifiable.find((task) => task.id === id);
+        const modifiableArray = [...tasks];
+        const taskToChange = modifiableArray.find((task) => task.id === id);
         if (taskToChange === undefined) {
             console.error(`A task with id ${id} was not found`);
             return;
         }
         taskToChange.isComplete = !taskToChange.isComplete;
-        setTasks([...modifiable.filter(task => task.id !== id), taskToChange])
+        setTasks([...modifiableArray.filter(task => task.id !== id), taskToChange])
     }
 
     function handleRemoveTask(id: number) {
