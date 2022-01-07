@@ -23,7 +23,7 @@ export function TaskList() {
 
     function handleCreateNewTask() {
         if (newTaskTitle === undefined || newTaskTitle === '') {
-            console.error("A new task must contain a ");
+            // console.error("A new task must contain a title");
             return;
         }
         const modifiableArray = [...tasks];
@@ -39,7 +39,7 @@ export function TaskList() {
         const modifiableArray = [...tasks];
         const taskToChange = modifiableArray.find((task) => task.id === id);
         if (taskToChange === undefined) {
-            console.error(`A task with id ${id} was not found`);
+            // console.error(`A task with id ${id} was not found`);
             return;
         }
         taskToChange.isComplete = !taskToChange.isComplete;
